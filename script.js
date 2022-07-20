@@ -1,59 +1,47 @@
-var value=0;
-var empty=[];
-function operate(arr){
-    
-    if(arr[1]==='+'){
-        value=(+arr[0]+ +arr[2]);
-        display(value);
-        
-    }else  if(arr[1]==='-'){
-       value=(+arr[0]- +arr[2]);
-       display (value);
-    }else  if(arr[1]==='*'){
-        value= (+arr[0]*+arr[2]);
-        display (value);
-    }else  if(arr[1]==='/'){
-        value= (+arr[0]/+arr[2]);
-       display (value);
+var val1='';
+var val2='';
+var operator='';
+
+
+function operate(){
+    if(operator==='+'){
+        sum(val1,val2);
+    }else   if(operator==='-'){
+        diff(val1,val2);
+    }else   if(operator==='*'){
+        product(val1,val2);
+    }else   if(operator==='/'){
+        div(val1,val2);
     }
-    return;
 }
 
-
-   function display(result){
-    div1.textContent+= result;
-    
-   }
-
-
-   var arr = [];
-   var i = 0;
-function enterValue(){
-  arr[i]=this.textContent;
-  display(arr[i]);
-  i++;
-  if(i>=4){
-   operate(arr);
-   arr=empty;
-   i=0;
-}
+function sum(a,b){
+return a+b;
 }
 
-function clrVal(){
-    let holder=div1.textContent;
-      holder=   holder.split('');
-      holder.pop();
-      holder=holder.join('');
-      div1.textContent=holder;
-      arr.pop();
-      i--;            
-  
-}
-function delFunc(){
-    arr=empty;
-    i=0;
-    div1.textContent='';
-}
+function diff(a,b){
+return a-b;
+ }
+
+function product(a,b){
+return a*b;
+ }
+
+function div(a,b){
+ return a/b;
+ }
+
+ function display(){
+    let n=this.textContent;
+    div1.textContent+=this.textContent;
+    if(n==='+'||n==='-'||n==='/'||n==='*'){
+        operator=n;
+    }else if(val1===''){
+    val2= this.textContent;
+    }else{
+        val1=this.textContent;
+    }
+ }
 
 const body = document.querySelector('.body');
 const container = document.createElement('div');
@@ -61,6 +49,7 @@ container.classList.add('container');
 body.appendChild(container);
 const div1 = document.createElement('div');
 div1.classList.add('subcontainer1');
+
 const div2 = document.createElement('div');
 div2.classList.add('subcontainer2');
 const div3 = document.createElement('div');
@@ -157,8 +146,6 @@ div2.appendChild(del);
     iadd.textContent='+';
     div3.appendChild(iadd);
 
-    const key= document.querySelectorAll('.key');
-    key.forEach(key=>key.addEventListener('click',enterValue));
-   clear.addEventListener('click',clrVal);
-   del.addEventListener('click',delFunc);
-
+    ieq.addEventListener('click',operate);
+    const keys =document.querySelectorAll('.key');
+    keys.forEach(key=>key.addEventListener('click',display));
