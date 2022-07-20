@@ -1,0 +1,64 @@
+.body{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    background-image: url(https://cdn.pixabay.com/photo/2016/07/06/15/29/math-1500720_960_720.jpg);
+   
+}
+.container{
+    display: flex;
+    flex-direction: column;
+   border: 2px solid gray;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: rgb(26, 26, 36);
+}
+.subcontainer1{
+    display: flex;
+    justify-content: flex-end;
+   align-items: flex-end;
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(125,140,115);
+    height: 100px;
+    font-size: xx-large;
+    
+}
+.subcontainer2{
+display: flex;
+justify-content: space-around;
+border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.button{
+   height: 70px;
+   width: 140px;
+   font-size: x-large;
+   background-color: rgb(231, 203, 40);
+   border: 1px;
+   border-radius: 10px;
+}
+.button:hover{
+    background-color: darkgoldenrod;
+}
+.button:active{
+    background-color:coral;
+   
+    border-bottom: 3px outset gray;
+    border-right: 3px outset gray;
+}
+.subcontainer3{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,1fr);
+   grid-gap:10px
+
+}
+.key{
+    width: 70px;
+    height: 70px;
+    font-size: x-large;
+    
+}
