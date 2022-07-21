@@ -1,46 +1,89 @@
 var val1='';
 var val2='';
 var operator='';
-
+var empty='0';
 
 function operate(){
+    findVal();
+    let result=0;
     if(operator==='+'){
-        sum(val1,val2);
+      result= sum(val1,val2);
     }else   if(operator==='-'){
-        diff(val1,val2);
+        result=   diff(val1,val2);
     }else   if(operator==='*'){
-        product(val1,val2);
+        result=    product(val1,val2);
     }else   if(operator==='/'){
-        div(val1,val2);
+        result=   div(val1,val2);
     }
+    
+    val1=result;
+    val2='';
+    operator='';
+    clearFunc();
+   
+    div1.textContent = result;
 }
 
 function sum(a,b){
-return a+b;
+return (+a + +b);
 }
 
 function diff(a,b){
-return a-b;
+return +a- +b;
  }
 
 function product(a,b){
-return a*b;
+return +a * +b;
  }
 
 function div(a,b){
- return a/b;
+ return +a / +b;
  }
 
  function display(){
-    let n=this.textContent;
-    div1.textContent+=this.textContent;
-    if(n==='+'||n==='-'||n==='/'||n==='*'){
-        operator=n;
-    }else if(val1===''){
-    val2= this.textContent;
-    }else{
-        val1=this.textContent;
+    if(div1.textContent==='0'){
+        div1.textContent='';
     }
+    if(this.textContent!=='='){
+    div1.textContent+=this.textContent;
+    }
+ }
+ function clearFunc(){
+div1.textContent=empty;
+ }
+
+ function operatorFunc(){
+    if(val1!=='' && operator!==''){console.log('working');
+        operate();
+        operator=this.textContent;
+    }
+    operator=this.textContent;
+    val1=div1.textContent;
+    div1.textContent +=operator;
+    
+ }
+ 
+ function findVal(){
+    let idx=0;
+    let arr = div1.textContent.split('');
+    for(let i=0; i<arr.length;i++){
+      if(arr[i]==='+'||arr[i]==='-'||arr[i]==='*'||arr[i]==='/'){
+        idx=i;
+      }
+    }
+    val2=div1.textContent.substring(idx+1);
+   
+ }
+
+ function delFunc(){
+    let holder= div1.textContent.split('');
+   let x= holder.pop();
+   if(x==='+'||x==='-'||x==='/'||x==='*'){
+    operator='';
+    val1='';
+   }
+    holder=holder.join('');
+    div1.textContent=holder;
  }
 
 const body = document.querySelector('.body');
@@ -49,7 +92,7 @@ container.classList.add('container');
 body.appendChild(container);
 const div1 = document.createElement('div');
 div1.classList.add('subcontainer1');
-
+div1.textContent='0';
 const div2 = document.createElement('div');
 div2.classList.add('subcontainer2');
 const div3 = document.createElement('div');
@@ -82,7 +125,7 @@ div2.appendChild(del);
     div3.appendChild(i9);
 
     const idiv = document.createElement('button');
-    idiv.classList.add('key');
+    idiv.classList.add('oKey');
     idiv.textContent='/';
     div3.appendChild(idiv);
 
@@ -102,7 +145,7 @@ div2.appendChild(del);
     div3.appendChild(i6);
 
     const imul = document.createElement('button');
-    imul.classList.add('key');
+    imul.classList.add('oKey');
     imul.textContent='*';
     div3.appendChild(imul);
 
@@ -122,7 +165,7 @@ div2.appendChild(del);
     div3.appendChild(i3);
 
     const imin = document.createElement('button');
-    imin.classList.add('key');
+    imin.classList.add('oKey');
     imin.textContent='-';
     div3.appendChild(imin);
 
@@ -142,10 +185,14 @@ div2.appendChild(del);
     div3.appendChild(ieq);
 
     const iadd = document.createElement('button');
-    iadd.classList.add('key');
+    iadd.classList.add('oKey');
     iadd.textContent='+';
     div3.appendChild(iadd);
 
     ieq.addEventListener('click',operate);
     const keys =document.querySelectorAll('.key');
     keys.forEach(key=>key.addEventListener('click',display));
+    clear.addEventListener('click',clearFunc);
+    const oKeys = document.querySelectorAll('.oKey');
+    oKeys.forEach(key=>key.addEventListener('click',operatorFunc));
+    del.addEventListener('click',delFunc);
