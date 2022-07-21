@@ -16,11 +16,11 @@ function operate(){
         result=   div(val1,val2);
     }
     
-    val1=result;
+    
     val2='';
     operator='';
     clearFunc();
-   
+    val1=result;
     div1.textContent = result;
 }
 
@@ -29,7 +29,7 @@ return (+a + +b);
 }
 
 function diff(a,b){
-return +a- +b;
+return +a -+b;
  }
 
 function product(a,b){
@@ -50,10 +50,13 @@ function div(a,b){
  }
  function clearFunc(){
 div1.textContent=empty;
+val2='';
+operator='';
+val1='';
  }
 
  function operatorFunc(){
-    if(val1!=='' && operator!==''){console.log('working');
+    if(val1!=='' && operator!==''){
         operate();
         operator=this.textContent;
     }
