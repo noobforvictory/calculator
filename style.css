@@ -15,8 +15,10 @@
 }
 .subcontainer1{
     display: flex;
-    flex-wrap: wrap;
-    
+   
+    width: 310px;
+    word-wrap: break-word;
+    word-break: break-all;
     justify-content: flex-end;
    align-items: flex-end;
     border: 2px solid grey;
